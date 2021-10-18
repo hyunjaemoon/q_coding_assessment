@@ -28,7 +28,7 @@ class CustomQueue:
         # If the counter of the cookieID k is less than maxCNT, there's no need to do anything.
         if self.maxCNT > self.IDdict[k]:
             return
-        self.maxCNT = max(self.maxCNT, self.IDdict[k])  # Update self.maxCNT
+        self.maxCNT = self.IDdict[k]  # Update self.maxCNT
         # Append cookieID k to the respective counter value
         self.CNTdict[self.maxCNT].append(k)
 
