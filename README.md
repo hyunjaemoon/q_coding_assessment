@@ -13,14 +13,14 @@ Hi! First of all, thank you for giving me this interview opportunity to share my
 This code includes a self defined queue and the solution to the given question.
 To run this Python Code, write the following line in the console:
 
-% python most_active_cookie.py cookie_log.csv <date>
+`% python most_active_cookie.py cookie_log.csv <date>`
 
 ### testcase.py
 
 This code includes a unit test of the code. It includes 4 test cases: 2 from the given instruction document, an empty case, and an off-by-one check.
 To run this Python Code, write the following line in the console:
 
-% python testcase.py
+`% python testcase.py`
 
 ### cookie_log.csv
 
