@@ -1,13 +1,6 @@
 import sys
 from collections import defaultdict
 
-"""
-@author: Hyun Jae Moon
-To run this Python Code, write the following line in the console:
-
-% python most_active_cookie.py cookie_log.csv <date>
-"""
-
 
 class CustomQueue:
     """
@@ -19,25 +12,25 @@ class CustomQueue:
     """
 
     def __init__(self):
-        self.IDdict = defaultdict(lambda: 0)  # (k, v) = (cookieID, counter)
+        # (k, v) = (cookieID, counter)
+        self.IDdict = defaultdict(lambda: 0)
         # (k, v) = (counter, list(cookieIDs))
         self.CNTdict = defaultdict(lambda: [])
         self.maxCNT = 0  # max(counter)
 
     def add(self, k):
         """
-        Q: Why is it OK to append each cookieID to each counter keys?
-            Ex) self.CNTdict == {0: ['AtY0laUfhglK3lC7'], 1: ['AtY0laUfhglK3lC7'], ...}
-
-        A: This is because we are only interested in the 'most' active cookies,
-        which means that we care only about the self.maxCNT key value for self.IDdict.
-        Only the largest counter key would contain the correct list of cookieIDs,
-        thus outputting our desired answer. All the intermediate counters are trivial.
+        All the intermediate counters less than self.maxCNT will have the wrong
+        list of cookieIDs. However, this is trivial because we only care about
+        the 'most' active cookies.
         """
         self.IDdict[k] += 1  # Increment the counter of the cookieID k
+        # If the counter of the cookieID k is less than maxCNT, there's no need to do anything.
+        if self.maxCNT > self.IDdict[k]:
+            return
+        self.maxCNT = max(self.maxCNT, self.IDdict[k])  # Update self.maxCNT
         # Append cookieID k to the respective counter value
-        self.CNTdict[self.IDdict[k]].append(k)
-        self.maxCNT = max(self.IDdict[k], self.maxCNT)  # Update self.maxCNT
+        self.CNTdict[self.maxCNT].append(k)
 
     def mostActive(self):
         return self.CNTdict[self.maxCNT]  # Return the most active cookieID(s)

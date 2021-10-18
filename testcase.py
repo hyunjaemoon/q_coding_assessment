@@ -1,12 +1,6 @@
 import unittest
 from most_active_cookie import CustomQueue, Solution
 
-"""
-@author: Hyun Jae Moon
-To run this Python Code, write the following line in the console:
-
-% python testcase.py
-"""
 
 class Testing(unittest.TestCase):
 
